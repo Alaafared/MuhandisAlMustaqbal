@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 14% 96%; /* light mode background */
+    --foreground: 220 9% 9%; /* light mode text */
+    --card: 0 0% 100%;
+    --card-foreground: 220 9% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 9% 9%;
+    --primary: 220 91% 56%;
+    --primary-foreground: 220 9% 96%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 9% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 91% 56%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 10% 10%; /* dark mode background */
+    --foreground: 220 10% 95%; /* dark mode text */
+    --card: 220 10% 15%;
+    --card-foreground: 220 10% 95%;
+    --popover: 220 10% 15%;
+    --popover-foreground: 220 10% 95%;
+    --primary: 220 91% 60%;
+    --primary-foreground: 220 9% 5%;
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 220 10% 95%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 220 10% 20%;
+    --accent-foreground: 220 10% 95%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
+    --ring: 220 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    direction: rtl; /* Set default direction to RTL */
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.dark .gradient-bg {
+   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+}
+
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 20px 40px rgba(255,255,255,0.05);
+}
+
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.correct-answer {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  color: white !important;
+  animation: correctPulse 0.6s ease-in-out;
+}
+
+.wrong-answer {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white !important;
+  animation: wrongShake 0.6s ease-in-out;
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wrongShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.score-animation {
+  animation: scoreUp 0.5s ease-out;
+}
+
+@keyframes scoreUp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Add styles for Arabic font if needed */
+.font-arabic {
+  font-family: 'Tajawal', sans-serif; /* Example Arabic font */
+}
+
+/* Ensure html has height for sticky footer */
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+#root > div:first-child {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > div:first-child > div:first-child {
+ flex-grow: 1; 
+}
+/* أضف هذه الأنماط في نهاية الملف */
+
+/* تحسينات للهواتف المحمولة */
+@media (max-width: 640px) {
+  .gradient-bg {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* تحسين حجم الخطوط للعناوين */
+  .text-4xl {
+    font-size: 1.75rem !important;
+    line-height: 2.25rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  /* تحسين الهيدر */
+  .py-10 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* تحسين البطاقات في GradeSelection */
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* تحسين الهوامش */
+  .p-8 {
+    padding: 1.5rem !important;
+  }
+
+  /* تحسين حجم الأزرار */
+  .text-lg {
+    font-size: 1rem !important;
+  }
+
+  /* تحسين عرض القوائم المنسدلة */
+  .w-\[calc\(100vw-2rem\)\] {
+    width: calc(100vw - 2rem) !important;
+  }
+
+  /* تحسين حجم الصور في QuizView */
+  .max-h-64 {
+    max-height: 12rem !important;
+  }
+
+  /* تحسين الهيدر في QuizView */
+  .pt-20 {
+    padding-top: 5rem !important;
+  }
+}
+
+/* تحسينات للهواتف الصغيرة جدًا */
+@media (max-width: 400px) {
+  .p-4 {
+    padding: 0.75rem !important;
+  }
+
+  .text-xl {
+    font-size: 1rem !important;
+  }
+
+  .text-lg {
+    font-size: 0.875rem !important;
+  }
+}
